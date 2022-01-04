@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const dbConfig = require ("./app/config/db.config");
+const dbConfig = require("./app/config/db.config");
 
 const app = express();
 
@@ -23,19 +23,36 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./app/models");
 const Role = db.role;
 
-db.mongoose
-    .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => {
-        console.log("Successfully connect to MongoDB.");
-        initial();
-    })
-    .catch(err => {
-        console.error("Connection error", err);
-        process.exit();
-    });
+if (dbConfig.DBTYPE == "cloud") {
+    db.mongoose
+        .connect(dbConfig.CLOUD_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+        .then(() => {
+            console.log("Successfully connect to MongoDB.");
+            initial();
+        })
+        .catch(err => {
+            console.error("Connection error", err);
+            process.exit();
+        });
+} else {
+    db.mongoose
+        .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+        .then(() => {
+            console.log("Successfully connect to MongoDB.");
+            initial();
+        })
+        .catch(err => {
+            console.error("Connection error", err);
+            process.exit();
+        });
+}
+
 
 // simple route
 app.get("/", (req, res) => {
