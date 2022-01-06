@@ -9,9 +9,15 @@ var corsOptions = {
     origin: "http://localhost:4200"
 };
 
+var corsOptions2 = {
+    origin: "https://inputcaloriesfront.herokuapp.com"
+};
+
+
 global.__basedir = __dirname;
 
 app.use(cors(corsOptions));
+app.use(cors(corsOptions2));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
