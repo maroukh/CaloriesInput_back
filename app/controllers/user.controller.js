@@ -29,7 +29,7 @@ exports.updateUserImage = async (req, res) => {
         if (req.file == undefined) {
             return res.status(400).send({ message: "Please upload a file!" });
         }
-        var fileUrl = "http://localhost:8080/api/files/get/" + req.file.filename;
+        var fileUrl = "https://inputcalories.herokuapp.com/api/files/get/" + req.file.filename;
         var fileName = req.file.filename;
         console.log("req.userId: " + id);
         //check modification of password

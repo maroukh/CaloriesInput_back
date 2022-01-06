@@ -61,7 +61,7 @@ exports.createWithUpload = async (req, res) => {
             description: req.body.description,
             calories: req.body.calories,
             dateTimeOfMeal: req.body.dateTimeOfMeal,
-            fileUrl: "http://localhost:8080/api/files/get/" + req.file.filename,
+            fileUrl: "https://inputcalories.herokuapp.com/api/files/get/" + req.file.filename,
             fileName: req.file.filename,
             user: req.userId
         });
@@ -196,7 +196,7 @@ exports.updateWithUpload = async (req, res) => {
         console.log("Uplaoding File ...............................................");
         if (req.file != undefined) {
             //return res.status(400).send({ message: "Please upload a file!" });
-            req.body.fileUrl = "http://localhost:8080/api/files/get/" + req.file.filename;
+            req.body.fileUrl = "https://inputcalories.herokuapp.com/api/files/get/" + req.file.filename;
             req.body.fileName = req.file.filename;
             console.log("************************* 1");
             console.log("************************* filename: " + req.file.filename);
