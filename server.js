@@ -16,7 +16,7 @@ var corsOptions2 = {
 
 global.__basedir = __dirname;
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 app.use(cors(corsOptions2));
 
 // parse requests of content-type - application/json
