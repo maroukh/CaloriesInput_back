@@ -10,7 +10,8 @@ var corsOptions = {
 };
 
 var corsOptions2 = {
-    origin: "https://inputcaloriesfront.herokuapp.com"
+    origin: "https://inputcaloriesfront.herokuapp.com",
+    credentials: true
 };
 
 
